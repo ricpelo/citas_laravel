@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CitasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/citas', [CitasController::class, 'index'])
+    ->middleware(['auth'])->name('ver-citas');
+
+Route::get('/cita/create', [CitasController::class, 'create'])
+    ->middleware(['auth'])->name('crear-cita');
