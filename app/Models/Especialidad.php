@@ -10,4 +10,9 @@ class Especialidad extends Model
     use HasFactory;
 
     protected $table = 'especialidades';
+
+    public function especialistas()
+    {
+        return $this->hasMany(Especialista::class);
+    }
 }
