@@ -18,4 +18,9 @@ class Especialista extends Model
     {
         return $this->hasMany(Cita::class);
     }
+
+    public function companias()
+    {
+        return $this->belongsToMany(Compania::class);
+    }
 }

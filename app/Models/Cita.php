@@ -18,4 +18,9 @@ class Cita extends Model
     {
         return $this->belongsTo(Especialista::class);
     }
+
+    public function compania()
+    {
+        return $this->belongsTo(Compania::class);
+    }
 }
