@@ -31,6 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cita/create', [CitasController::class, 'create'])
         ->name('crear-cita');
 
-    Route::delete('/cita/{id}', [CitasController::class, 'destroy'])
+    Route::delete('/cita/{cita}', [CitasController::class, 'destroy'])
         ->name('anular-cita');
 });

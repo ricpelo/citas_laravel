@@ -50,13 +50,13 @@
                                             </td>
                                             <td class="px-6 py-4">
                                                 <div class="text-sm text-gray-900">
-                                                    {{ $cita->fecha_hora }}
+                                                    {{ $cita->fecha_hora->locale('es_ES')->timezone('Europe/Madrid')->isoFormat('DD-MM-YYYY HH:mm') }}
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <form action="{{ route('anular-cita', $cita->id) }}" method="POST">
                                                     @method('DELETE')
-                                                    <input class="px-4 py-1 text-sm text-white bg-red-400 rounded" type="submit" value="Anular">
+                                                    <button class="px-4 py-1 text-sm text-white bg-red-400 rounded">Anular</button>
                                                     @csrf
                                                 </form>
                                             </td>

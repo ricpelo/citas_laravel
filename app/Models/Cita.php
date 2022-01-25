@@ -9,6 +9,10 @@ class Cita extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'fecha_hora' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
