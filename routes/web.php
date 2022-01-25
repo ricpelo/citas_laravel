@@ -28,9 +28,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/citas', [CitasController::class, 'index'])
         ->name('ver-citas');
 
-    Route::get('/cita/create', [CitasController::class, 'create'])
-        ->name('crear-cita');
-
     Route::delete('/cita/{cita}', [CitasController::class, 'destroy'])
         ->name('anular-cita');
+
+    Route::get('/cita/create', [CitasController::class, 'create'])
+        ->name('crear-cita-compania');
+
+    Route::get('/cita/create/{compania}', [CitasController::class, 'createEspecialidad'])
+        ->name('crear-cita-especialidad');
+
+    Route::get('/cita/create/{compania}/{especialidad}', [CitasController::class, 'createEspecialista'])
+        ->name('crear-cita-especialista');
+
+    Route::get('/cita/create/{compania}/{especialidad}/{especialista}', [CitasController::class, 'createFechaHora'])
+        ->name('crear-cita-fecha-hora');
 });
