@@ -14,7 +14,7 @@ class AddCitasCompaniaIdColumn extends Migration
     public function up()
     {
         Schema::table('citas', function (Blueprint $table) {
-            $table->foreignId('compania_id')->constrained();
+            $table->foreignId('compania_id')->nullable()->constrained();
         });
     }
 

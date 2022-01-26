@@ -43,20 +43,39 @@ class CitasController extends Controller
 
     public function createEspecialista(Compania $compania, Especialidad $especialidad)
     {
+        $especialistas = Especialista::all()->filter(function ($value, $key) use ($especialidad, $compania) {
+            return $value->especialidad == $especialidad &&
+                   $value->companias->contains($compania);
+        });
+
         return view('citas.create-especialista', [
             'compania' => $compania,
             'especialidad' => $especialidad,
-            'especialistas' => $especialidad->especialistas,
+            'especialistas' => $especialistas,
         ]);
     }
 
     public function createFechaHora(Compania $compania, Especialidad $especialidad, Especialista $especialista)
     {
+        // La siguiente línea no hace falta porque estamos usando
+        // modelos anidados en la ruta:
+        // (Ver https://laravel.com/docs/8.x/routing#implicit-model-binding-scoping)
+        // abort_if($especialista->especialidad != $especialidad, 404);
+        abort_unless($especialista->companias->contains($compania), 404);
+
         return view('citas.create-fecha-hora', [
             'compania' => $compania,
             'especialidad' => $especialidad,
             'especialista' => $especialista,
             'citas' => $especialista->citas()->where('user_id', null)->get(),
+        ]);
+    }
+
+    public function createConfirmar(Compania $compania, Cita $cita)
+    {
+        return view('citas.create-confirmar', [
+            'compania' => $compania,
+            'cita' => $cita,
         ]);
     }
 

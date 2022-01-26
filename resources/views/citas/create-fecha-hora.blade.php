@@ -11,7 +11,7 @@
                     <div class="flex flex-col items-center mt-4">
                         <h1>Seleccione el día y la hora</h1>
                         @foreach ($citas as $cita)
-                            <a class="px-4 m-2 rounded bg-gray-300" href="#">
+                            <a class="px-4 m-2 rounded bg-gray-300" href="{{ route('crear-cita-confirmar', [$compania, $cita]) }} ">
                                 {{ $cita->fecha_hora }}
                             </a>
                         @endforeach
