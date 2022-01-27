@@ -6,6 +6,7 @@ use App\Models\Cita;
 use App\Models\Compania;
 use App\Models\Especialidad;
 use App\Models\Especialista;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,10 +44,16 @@ class CitasController extends Controller
 
     public function createEspecialista(Compania $compania, Especialidad $especialidad)
     {
-        $especialistas = Especialista::all()->filter(function ($value, $key) use ($especialidad, $compania) {
-            return $value->especialidad == $especialidad &&
-                   $value->companias->contains($compania);
-        });
+        $especialistas = Especialista::whereHas('especialidad', function (Builder $query) use ($especialidad) {
+            $query->where('id', $especialidad->id);
+        })->whereHas('companias', function (Builder $query) use ($compania) {
+            $query->where('id', $compania->id);
+        })->get();
+
+        // $especialistas = Especialista::all()->filter(function ($value, $key) use ($especialidad, $compania) {
+        //     return $value->especialidad == $especialidad &&
+        //            $value->companias->contains($compania);
+        // });
 
         return view('citas.create-especialista', [
             'compania' => $compania,

@@ -21,11 +21,22 @@
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header class="bg-white shadow pb-2">
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
-            </header>
+                @if (session()->has('error'))
+                    <div class="bg-red-100 rounded-lg p-4 m-4 text-sm text-red-700" role="alert">
+                        <span class="font-semibold">Error:</span> {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session()->has('success'))
+                    <div class="bg-green-100 rounded-lg p-4 mt-4 mb-4 text-sm text-green-700" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+        </header>
 
             <!-- Page Content -->
             <main>
