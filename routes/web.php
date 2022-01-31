@@ -46,4 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cita/create/{compania}/{cita}/confirmar', [CitasController::class, 'createConfirmar'])
         ->name('crear-cita-confirmar');
+
+    Route::post('/cita/create/{compania}/{cita}/confirmar', [CitasController::class, 'storeConfirmar'])
+        ->name('store-cita-confirmar');
 });

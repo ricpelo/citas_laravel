@@ -15,7 +15,7 @@
                                 {{ $cita->fecha_hora }}
                             </a>
                         @endforeach
-                        <a href="{{ route('crear-cita-especialidad', $compania, $especialidad) }}" class="mt-4 text-blue-900 hover:underline">Volver</a>
+                        <a href="{{ route('crear-cita-especialista', [$compania, $especialidad]) }}" class="mt-4 text-blue-900 hover:underline">Volver</a>
                     </div>
                 </div>
             </div>

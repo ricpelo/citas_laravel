@@ -22,8 +22,10 @@ class CitasController extends Controller
     public function destroy(Cita $cita)
     {
         $cita->user_id = null;
+        $cita->compania_id = null;
         $cita->save();
-        return redirect(route('ver-citas'));
+        return redirect()->route('ver-citas')
+            ->with('success', 'Cita anulada con éxito.');
     }
 
     public function create()
@@ -80,10 +82,23 @@ class CitasController extends Controller
 
     public function createConfirmar(Compania $compania, Cita $cita)
     {
+        abort_unless($cita->especialista->companias->contains($compania), 404);
+
         return view('citas.create-confirmar', [
             'compania' => $compania,
             'cita' => $cita,
         ]);
     }
 
+    public function storeConfirmar(Compania $compania, Cita $cita)
+    {
+        abort_unless($cita->especialista->companias->contains($compania), 404);
+
+        $cita->compania_id = $compania->id;
+        $cita->user_id = Auth::id();
+        $cita->save();
+
+        return redirect()->route('ver-citas')
+            ->with('success', 'Cita creada con éxito.');
+    }
 }
