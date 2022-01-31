@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CitasController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    if (Auth::user()->esEspecialista()) {
+        return view('dashboard-especialista');
+    }
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard-especialista', function () {
+    Gate::authorize('dashboard-especialista');
+    return view('dashboard-especialista');
+})->middleware(['auth'])->name('dashboard-especialista');
 
 require __DIR__.'/auth.php';
 
