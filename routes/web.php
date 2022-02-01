@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     if (Auth::user()->esEspecialista()) {
-        return view('dashboard-especialista');
+        return redirect()->route('dashboard-especialista');
     }
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
