@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(Cita::class);
     }
 
+    public function especialista()
+    {
+        return $this->hasOne(Especialista::class);
+    }
+
     public function esAdmin()
     {
         return $this->tipo == self::TIPO_ADMIN;
@@ -63,6 +68,6 @@ class User extends Authenticatable
 
     public function esEspecialista()
     {
-        return $this->tipo == self::TIPO_ESPEC;
+        return $this->especialista !== null;
     }
 }
