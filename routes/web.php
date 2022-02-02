@@ -28,13 +28,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard-especialista', function () {
-    Gate::authorize('dashboard-especialista');
+    // Gate::authorize('dashboard-especialista');
     return view('dashboard-especialista');
-})->middleware(['auth'])->name('dashboard-especialista');
+})->middleware(['auth', 'can:dashboard-especialista'])->name('dashboard-especialista');
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'can:dashboard-paciente'])->group(function () {
     Route::get('/citas', [CitasController::class, 'index'])
         ->name('ver-citas');
 

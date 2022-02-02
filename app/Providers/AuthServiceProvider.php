@@ -32,5 +32,11 @@ class AuthServiceProvider extends ServiceProvider
                 ? Response::allow()
                 : Response::deny('No tiene permiso para entrar.');
         });
+
+        Gate::define('dashboard-paciente', function (User $user) {
+            return !$user->esEspecialista()
+                ? Response::allow()
+                : Response::deny('No tiene permiso para entrar.');
+        });
     }
 }
