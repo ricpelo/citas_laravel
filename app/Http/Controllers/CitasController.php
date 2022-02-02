@@ -101,4 +101,18 @@ class CitasController extends Controller
         return redirect()->route('ver-citas')
             ->with('success', 'Cita creada con éxito.');
     }
+
+    public function especialistasIndex()
+    {
+        $citas = Cita::where('fecha_hora', '>', now())
+            ->has('user')
+            ->whereHas('especialista', function (Builder $query) {
+                $query->where('id', Auth::user()->especialista->id);
+            })
+            ->get();
+
+        return view('citas.especialistas-index', [
+            'citas' => $citas,
+        ]);
+    }
 }

@@ -60,3 +60,8 @@ Route::middleware(['auth', 'can:dashboard-paciente'])->group(function () {
     Route::post('/cita/create/{compania}/{cita}/confirmar', [CitasController::class, 'storeConfirmar'])
         ->name('store-cita-confirmar');
 });
+
+Route::middleware(['auth', 'can:dashboard-especialista'])->group(function () {
+    Route::get('/especialistas/citas', [CitasController::class, 'especialistasIndex'])
+        ->name('especialistas-ver-citas');
+});

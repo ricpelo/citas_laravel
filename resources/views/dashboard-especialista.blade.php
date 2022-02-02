@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 flex flex-col items-center">
                     <div class="py-6">
-                        <a class="px-4 py-2 rounded bg-gray-300" href="{{ route('ver-citas') }}">Ver citas</a>
+                        <a class="px-4 py-2 rounded bg-gray-300" href="{{ route('especialistas-ver-citas') }}">Ver citas</a>
                     </div>
                     <form class="py-4" action="{{ route('logout') }}" method="POST">
                         @method('POST')
