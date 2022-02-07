@@ -13,7 +13,7 @@
                         <a class="px-4 py-2 rounded bg-gray-300" href="{{ route('ver-citas') }}">Ver citas</a>
                     </div>
                     <div class="py-6">
-                        <a class="px-4 py-2 rounded bg-green-300" href="{{ route('crear-cita-compania') }}">Nueva cita</a>
+                        <a class="px-4 py-2 rounded bg-green-300" href="{{ route('crear-cita-compania') }}">Cita nueva</a>
                     </div>
                     <form class="py-4" action="{{ route('logout') }}" method="POST">
                         @method('POST')
